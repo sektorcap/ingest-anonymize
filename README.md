@@ -6,9 +6,9 @@ Anonymize a field using by replacing values with a consistent HMAC function.
 | Name | Required | Default | Description |
 |------|----------|---------|-------------|
 |`field`|yes|-|The field to anonymize. The field in the document can be a string or an array.|
-|`target_field`|no|`field`-hash|The field to assign the anonymize value to.|
-|`key`|no|supersecrethere|The key value used for the `hmac`.|
-|`method`|no|HmacSHA1|Hmac algorithm to use. See [here](https://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html#Mac) for a complete list.|
+|`target_field`|no|`field`|The field to assign the anonymize value to. If not defined `field` will be overwritten.|
+|`key`|no|supersecrethere|The key value used for the `HMAC`.|
+|`method`|no|HmacSHA1|`HMAC` algorithm to use. See [here](https://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html#Mac) for a complete list.|
 
 ## Usage
 
@@ -115,7 +115,7 @@ gradle wrapper --gradle-version 2.13
 * and todos...
 
 ## Acknowledgements
-Thanks to [Alexander Reelsen](https://github.com/spinscale) for the fantastic project
+Thanks to [Alexander Reelsen](https://github.com/spinscale) for his project
 https://github.com/spinscale/cookiecutter-elasticsearch-ingest-processor.
 
-Build from scratch an `Ingestion Plugin` using his project it has been very easy.
+It's very easy building from scratch an `Ingestion Plugin` using the Alexander's project .
