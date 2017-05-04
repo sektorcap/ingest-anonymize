@@ -28,15 +28,6 @@ import java.util.List;
 import java.util.Map;
 
 public class IngestAnonymizePlugin extends Plugin implements IngestPlugin {
-
-    public static final Setting<String> YOUR_SETTING =
-            new Setting<>("ingest.anonymize.setting", "foo", (value) -> value, Setting.Property.NodeScope);
-
-    @Override
-    public List<Setting<?>> getSettings() {
-        return Arrays.asList(YOUR_SETTING);
-    }
-
     @Override
     public Map<String, Processor.Factory> getProcessors(Processor.Parameters parameters) {
         return MapBuilder.<String, Processor.Factory>newMapBuilder()
