@@ -11,7 +11,7 @@ buildscript {
 }
 
 group = 'org.elasticsearch.plugin.ingest'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0'
 
 apply plugin: 'java'
 apply plugin: 'elasticsearch.esplugin'
@@ -45,3 +45,4 @@ thirdPartyAudit.enabled = false
 // Uncomment this to skip license header checks
 // licenseHeaders.enabled = false
 
+// forbiddenApisMain.enabled = false

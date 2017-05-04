@@ -9,6 +9,7 @@ Anonymize a field using by replacing values with a consistent HMAC function.
 |`target_field`|no|`field`|The field to assign the anonymize value to. If not defined `field` will be overwritten.|
 |`key`|no|supersecrethere|The key value used for the `HMAC`.|
 |`method`|no|HmacSHA1|`HMAC` algorithm to use. See [here](https://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html#Mac) for a complete list.|
+|`ignore_missing`|no|true|If `true` and `field` does not exist, the processor quietly exits without modifying the document|
 
 ## Usage
 
@@ -19,10 +20,11 @@ PUT _ingest/pipeline/anonymize-pipeline
   "processors": [
     {
       "anonymize" : {
-        "field" : "my_field",
-        "target_field" : "hash",
-        "key"    : "testkey",
-        "method" : "HmacSHA256"
+        "field"          : "my_field",
+        "target_field"   : "hash",
+        "key"            : "testkey",
+        "method"         : "HmacSHA256",
+        "ignore_missing" : true
       }
     }
   ]

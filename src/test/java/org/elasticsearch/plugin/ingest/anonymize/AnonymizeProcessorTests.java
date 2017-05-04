@@ -26,9 +26,14 @@ import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.io.IOException;
+
 
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.anything;
+import static org.hamcrest.Matchers.not;
 
 public class AnonymizeProcessorTests extends ESTestCase {
 
@@ -40,7 +45,8 @@ public class AnonymizeProcessorTests extends ESTestCase {
         AnonymizeProcessor processor = new AnonymizeProcessor(randomAsciiOfLength(10), "source_field",
                                                                                        "target_field",
                                                                                        "testkey",
-                                                                                       "HmacSHA1");
+                                                                                       "HmacSHA1",
+                                                                                       true);
         processor.execute(ingestDocument);
         Map<String, Object> data = ingestDocument.getSourceAndMetadata();
 
@@ -57,7 +63,8 @@ public class AnonymizeProcessorTests extends ESTestCase {
         AnonymizeProcessor processor = new AnonymizeProcessor(randomAsciiOfLength(10), "source_field",
                                                                                        "target_field",
                                                                                        "testkey",
-                                                                                       "HmacSHA1");
+                                                                                       "HmacSHA1",
+                                                                                       true);
         processor.execute(ingestDocument);
         Map<String, Object> data = ingestDocument.getSourceAndMetadata();
 
@@ -66,6 +73,24 @@ public class AnonymizeProcessorTests extends ESTestCase {
                                                                  "e48edab11ade7662faafc534c33315118bdb795b",
                                                                  "a32ca25ccf1ff7dabb0d1bd594bda459fa59368f"));
         assertThat(data.get("target_field"), is(result));
+    }
+
+    public void testThatProcessorWorksWithIgnoreMissingAndThrowException() throws Exception {
+        Map<String, Object> document = new HashMap<>();
+        document.put("source_field", null);
+        IngestDocument ingestDocument = RandomDocumentPicks.randomIngestDocument(random(), document);
+
+        AnonymizeProcessor processor = new AnonymizeProcessor(randomAsciiOfLength(10), "source_field",
+                                                                                       "target_field",
+                                                                                       "testkey",
+                                                                                       "HmacSHA1",
+                                                                                       false);
+        try {
+            processor.execute(ingestDocument);
+            assertThat("never here", is("")); // never here
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage(), is("field [source_field] is null, cannot do anonymize."));
+        }
     }
 
 }
