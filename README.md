@@ -99,7 +99,7 @@ This will produce a zip file in `build/distributions`.
 After building the zip file, you can install it like this
 
 ```bash
-bin/plugin install file:///path/to/ingest-anonymize/build/distribution/ingest-anonymize-0.0.1-SNAPSHOT.zip
+bin/elasticsearch-plugin install file:///path/to/ingest-anonymize/build/distribution/ingest-anonymize-x.y.z-SNAPSHOT.zip
 ```
 
 **Important**: in order to build the project you have to use gradle version 2.13
