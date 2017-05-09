@@ -110,13 +110,29 @@
         type: test
         id: 3
         pipeline: "my_pipeline"
-        body: {field_xxx: "test"}
+        body: {field1: ["my_value1"]}
 
   - do:
       get:
         index: test
         type: test
         id: 3
+  - match: { _source.field1: ["my_value1"] }
+  - match: { _source.field2: ["30cbbeb807ee53d9be3235f34dbd3a1e0e07bae7038333631178ebbffea61efc"] }
+
+  - do:
+      index:
+        index: test
+        type: test
+        id: 4
+        pipeline: "my_pipeline"
+        body: {field_xxx: "test"}
+
+  - do:
+      get:
+        index: test
+        type: test
+        id: 4
   - match: { _source.field_xxx: "test" }
 
 ---

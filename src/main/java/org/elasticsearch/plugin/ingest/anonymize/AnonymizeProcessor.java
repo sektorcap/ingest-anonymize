@@ -61,6 +61,7 @@ public class AnonymizeProcessor extends AbstractProcessor {
     @Override
     public void execute(IngestDocument ingestDocument) throws Exception {
         List<?> list = null;
+        boolean isString = false;
         try {
             String in = ingestDocument.getFieldValue(field, String.class);
 
@@ -70,6 +71,7 @@ public class AnonymizeProcessor extends AbstractProcessor {
                 throw new IllegalArgumentException("field [" + field + "] is null, cannot do anonymize.");
             }
 
+            isString = true;
             list = new ArrayList<>(Arrays.asList(in));
         } catch (IllegalArgumentException e) { // field does not exist or it is not a string
             list = ingestDocument.getFieldValue(field, ArrayList.class, true);
@@ -91,7 +93,7 @@ public class AnonymizeProcessor extends AbstractProcessor {
             String hash = new BigInteger(1, b).toString(16);
             outcontent.add(hash);
         }
-        if (outcontent.size() == 1) {
+        if (isString) {
             ingestDocument.setFieldValue(targetField, outcontent.get(0));
         } else {
             ingestDocument.setFieldValue(targetField, outcontent);
