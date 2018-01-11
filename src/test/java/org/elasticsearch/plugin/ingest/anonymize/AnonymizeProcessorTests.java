@@ -42,7 +42,7 @@ public class AnonymizeProcessorTests extends ESTestCase {
         document.put("source_field", "fancy source field content");
         IngestDocument ingestDocument = RandomDocumentPicks.randomIngestDocument(random(), document);
 
-        AnonymizeProcessor processor = new AnonymizeProcessor(randomAsciiOfLength(10), "source_field",
+        AnonymizeProcessor processor = new AnonymizeProcessor(randomAlphaOfLength(10), "source_field",
                                                                                        "target_field",
                                                                                        "testkey",
                                                                                        "HmacSHA1",
@@ -60,7 +60,7 @@ public class AnonymizeProcessorTests extends ESTestCase {
         document.put("source_field", content);
         IngestDocument ingestDocument = RandomDocumentPicks.randomIngestDocument(random(), document);
 
-        AnonymizeProcessor processor = new AnonymizeProcessor(randomAsciiOfLength(10), "source_field",
+        AnonymizeProcessor processor = new AnonymizeProcessor(randomAlphaOfLength(10), "source_field",
                                                                                        "target_field",
                                                                                        "testkey",
                                                                                        "HmacSHA1",
@@ -80,7 +80,7 @@ public class AnonymizeProcessorTests extends ESTestCase {
         document.put("source_field", null);
         IngestDocument ingestDocument = RandomDocumentPicks.randomIngestDocument(random(), document);
 
-        AnonymizeProcessor processor = new AnonymizeProcessor(randomAsciiOfLength(10), "source_field",
+        AnonymizeProcessor processor = new AnonymizeProcessor(randomAlphaOfLength(10), "source_field",
                                                                                        "target_field",
                                                                                        "testkey",
                                                                                        "HmacSHA1",
