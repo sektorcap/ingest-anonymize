@@ -11,7 +11,7 @@ buildscript {
 }
 
 group = 'org.elasticsearch.plugin.ingest'
-version = '0.1.3'
+version = '0.1.4'
 
 apply plugin: 'java'
 apply plugin: 'elasticsearch.esplugin'
