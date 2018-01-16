@@ -93,6 +93,8 @@ No configuration required
 
 In order to install this plugin, you need to create a zip distribution first by running
 
+Remember to set the `elasticsearchVersion` parameter in your `gradle.properties` file.
+
 ```bash
 gradle clean check
 ```
@@ -101,14 +103,7 @@ This will produce a zip file in `build/distributions`.
 After building the zip file, you can install it like this
 
 ```bash
-bin/elasticsearch-plugin install file:///path/to/ingest-anonymize/build/distribution/ingest-anonymize-x.y.z-SNAPSHOT.zip
-```
-
-**Important**: in order to build the project you have to use gradle version 2.13
-
-In case you can create a gradle-wrapper:
-```
-gradle wrapper --gradle-version 2.13
+bin/elasticsearch-plugin install file:///path/to/ingest-anonymize/build/distribution/ingest-anonymize-x.y.z.zip
 ```
 
 ## Bugs & TODO
