@@ -90,10 +90,9 @@ GET /my-index/my-type/2
 No configuration required
 
 ## Setup
+Remember to set the `elasticsearchVersion` parameter in your `gradle.properties` file.
 
 In order to install this plugin, you need to create a zip distribution first by running
-
-Remember to set the `elasticsearchVersion` parameter in your `gradle.properties` file.
 
 ```bash
 gradle clean check
