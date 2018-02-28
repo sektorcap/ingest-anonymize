@@ -105,6 +105,9 @@ After building the zip file, you can install it like this
 bin/elasticsearch-plugin install file:///path/to/ingest-anonymize/build/distribution/ingest-anonymize-x.y.z.zip
 ```
 
+## Java
+Starting from `elasticsearch 6.2`, developers must user Java 9. Seems to be some issue with `openjdk` so use `Oracle Java 9` instead
+
 ## Bugs & TODO
 
 * There are always bugs
