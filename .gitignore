@@ -1,13 +1,11 @@
 .idea/
 .gradle/
-gradle/
 build/
 out/
 *.swp
 *-execution-hints.log
 *-execution-times.log
 gradle.properties
-gradlew
 
 // ignore the downloaded model files in git
 src/test/resources/models/
