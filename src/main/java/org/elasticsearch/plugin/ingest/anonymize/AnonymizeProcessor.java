@@ -31,10 +31,6 @@ import java.util.Arrays;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
-import java.io.PrintWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-
 import static org.elasticsearch.ingest.ConfigurationUtils.readStringProperty;
 import static org.elasticsearch.ingest.ConfigurationUtils.readBooleanProperty;
 
@@ -59,14 +55,14 @@ public class AnonymizeProcessor extends AbstractProcessor {
     }
 
     @Override
-    public void execute(IngestDocument ingestDocument) throws Exception {
+    public IngestDocument execute(IngestDocument ingestDocument) throws Exception {
         List<?> list = null;
         boolean isString = false;
         try {
             String in = ingestDocument.getFieldValue(field, String.class);
 
             if (in == null && ignoreMissing) { // field exists, it is null but it must be ignored
-                return;
+                return ingestDocument;
             } else if (in == null) { // field exists, it is null and it must not be ignored
                 throw new IllegalArgumentException("field [" + field + "] is null, cannot do anonymize.");
             }
@@ -77,7 +73,7 @@ public class AnonymizeProcessor extends AbstractProcessor {
             list = ingestDocument.getFieldValue(field, ArrayList.class, true);
 
             if (list == null && ignoreMissing) { // field does not exist or it is null but it must be ignored
-                return;
+                return ingestDocument;
             } else if (list == null) { // field does not exist or it is null but it must not be ignored
                 throw new IllegalArgumentException("field [" + field + "] is null, cannot do anonymize.");
             }
@@ -98,6 +94,7 @@ public class AnonymizeProcessor extends AbstractProcessor {
         } else {
             ingestDocument.setFieldValue(targetField, outcontent);
         }
+        return ingestDocument;
     }
 
     @Override

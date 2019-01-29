@@ -24,16 +24,10 @@ import org.elasticsearch.test.ESTestCase;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Arrays;
-import java.io.IOException;
-
 
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.not;
 
 public class AnonymizeProcessorTests extends ESTestCase {
 
@@ -47,8 +41,8 @@ public class AnonymizeProcessorTests extends ESTestCase {
                                                                                        "testkey",
                                                                                        "HmacSHA1",
                                                                                        true);
-        processor.execute(ingestDocument);
-        Map<String, Object> data = ingestDocument.getSourceAndMetadata();
+
+        Map<String, Object> data = processor.execute(ingestDocument).getSourceAndMetadata();
 
         assertThat(data, hasKey("target_field"));
         assertThat(data.get("target_field"), is("d47e2517477afbfc29fc3f822cd5f2cf5c7a2e8b"));
@@ -65,8 +59,7 @@ public class AnonymizeProcessorTests extends ESTestCase {
                                                                                        "testkey",
                                                                                        "HmacSHA1",
                                                                                        true);
-        processor.execute(ingestDocument);
-        Map<String, Object> data = ingestDocument.getSourceAndMetadata();
+        Map<String, Object> data = processor.execute(ingestDocument).getSourceAndMetadata();
 
         assertThat(data, hasKey("target_field"));
         ArrayList<String> result = new ArrayList<>(Arrays.asList("7bab393a04bad0737d5ff52f82c8fcece6490c77",
