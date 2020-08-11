@@ -30,12 +30,12 @@ PUT _ingest/pipeline/anonymize-pipeline
   ]
 }
 
-PUT /my-index/my-type/1?pipeline=anonymize-pipeline
+PUT /my-index/_doc/1?pipeline=anonymize-pipeline
 {
   "my_field" : ["my_value1", "my_value2","my_value3"]
 }
 
-GET /my-index/my-type/1
+GET /my-index/_doc/1
 {
   "_index": "my-index",
   "_type": "my-type",
@@ -68,12 +68,12 @@ PUT _ingest/pipeline/anonymize-pipeline
   ]
 }
 
-PUT /my-index/my-type/2?pipeline=anonymize-pipeline
+PUT /my-index/_doc/2?pipeline=anonymize-pipeline
 {
   "my_field" : "Some content"
 }
 
-GET /my-index/my-type/2
+GET /my-index/_doc/2
 {
   "_index": "my-index",
   "_type": "my-type",
@@ -106,7 +106,7 @@ bin/elasticsearch-plugin install file:///path/to/ingest-anonymize/build/distribu
 ```
 
 ## Java
-Starting from `elasticsearch 6.2`, developers must user Java 9. Seems to be some issue with `openjdk` so use `Oracle Java 9` instead
+Starting from `elasticsearch 7.x`, developers must use Java 14.
 
 ## Bugs & TODO
 

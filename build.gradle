@@ -20,6 +20,8 @@ version = "${elasticsearchVersion}"
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'elasticsearch.esplugin'
+apply plugin: 'elasticsearch.testclusters'
+apply plugin: 'elasticsearch.rest-resources'
 
 // license of this project
 licenseFile = rootProject.file('LICENSE.txt')
@@ -75,6 +77,9 @@ dependencyLicenses.enabled = false
 thirdPartyAudit.enabled = false
 
 // Uncomment this to skip license header checks
-// licenseHeaders.enabled = false
+ licenseHeaders.enabled = false
+
+// disable validation of pom creation, only needed for sonatype uploads
+validateNebulaPom.enabled = false
 
 // forbiddenApisMain.enabled = false

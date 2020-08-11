@@ -19,7 +19,6 @@
   - do:
       index:
         index: test
-        type: test
         id: 1
         pipeline: "my_pipeline"
         body: {field1: "my_value"}
@@ -27,14 +26,12 @@
   - do:
       get:
         index: test
-        type: test
         id: 1
   - match: { _source.field1: "eed94fc743663616db8942ac51b034da61609521" }
 
   - do:
       index:
         index: test
-        type: test
         id: 2
         pipeline: "my_pipeline"
         body: {field1: ["my_value1", "my_value2", "my_value3"]}
@@ -42,7 +39,6 @@
   - do:
       get:
         index: test
-        type: test
         id: 2
   - match: { _source.field1: ["aadd426bda43f0c51a1f7bbd620af9f8239e88be",
                               "9cd54e2c411634e5598e32b0642a4b159b84f3cd",
@@ -72,7 +68,6 @@
   - do:
       index:
         index: test
-        type: test
         id: 1
         pipeline: "my_pipeline"
         body: {field1: "my_value"}
@@ -80,7 +75,6 @@
   - do:
       get:
         index: test
-        type: test
         id: 1
   - match: { _source.field1: "my_value" }
   - match: { _source.field2: "bb18a9bf8fbf52b5efb1242cf03aeae89681024177e78e075b146deb6faa2b19" }
@@ -88,7 +82,6 @@
   - do:
       index:
         index: test
-        type: test
         id: 2
         pipeline: "my_pipeline"
         body: {field1: ["my_value1", "my_value2", "my_value3"]}
@@ -96,7 +89,6 @@
   - do:
       get:
         index: test
-        type: test
         id: 2
   - match: { _source.field1: ["my_value1", "my_value2", "my_value3"] }
   - match: { _source.field2: ["30cbbeb807ee53d9be3235f34dbd3a1e0e07bae7038333631178ebbffea61efc",
@@ -107,7 +99,6 @@
   - do:
       index:
         index: test
-        type: test
         id: 3
         pipeline: "my_pipeline"
         body: {field1: ["my_value1"]}
@@ -115,7 +106,6 @@
   - do:
       get:
         index: test
-        type: test
         id: 3
   - match: { _source.field1: ["my_value1"] }
   - match: { _source.field2: ["30cbbeb807ee53d9be3235f34dbd3a1e0e07bae7038333631178ebbffea61efc"] }
@@ -123,7 +113,6 @@
   - do:
       index:
         index: test
-        type: test
         id: 4
         pipeline: "my_pipeline"
         body: {field_xxx: "test"}
@@ -131,7 +120,6 @@
   - do:
       get:
         index: test
-        type: test
         id: 4
   - match: { _source.field_xxx: "test" }
 
@@ -170,14 +158,12 @@
   - do:
       index:
         index: test
-        type: test
         id: 1
         pipeline: "my_pipeline"
         body: {fieldA: "my_value"}
   - do:
       get:
         index: test
-        type: test
         id: 1
   - match: { _source.fieldA: "my_value" }
   - match: { _source.fieldB: "bb18a9bf8fbf52b5efb1242cf03aeae89681024177e78e075b146deb6faa2b19" }
@@ -185,7 +171,6 @@
   - do:
       index:
         index: test
-        type: test
         id: 2
         pipeline: "my_pipeline"
         body: {
@@ -195,7 +180,6 @@
   - do:
       get:
         index: test
-        type: test
         id: 2
   - is_false: _source.field1
   - match: { _source.fieldA: "my_value" }
