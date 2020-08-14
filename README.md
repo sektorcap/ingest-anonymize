@@ -38,7 +38,7 @@ PUT /my-index/_doc/1?pipeline=anonymize-pipeline
 GET /my-index/_doc/1
 {
   "_index": "my-index",
-  "_type": "my-type",
+  "_type": "_doc",
   "_id": "1",
   "_version": 1,
   "found": true,
@@ -76,7 +76,7 @@ PUT /my-index/_doc/2?pipeline=anonymize-pipeline
 GET /my-index/_doc/2
 {
   "_index": "my-index",
-  "_type": "my-type",
+  "_type": "_doc",
   "_id": "2",
   "_version": 1,
   "found": true,
