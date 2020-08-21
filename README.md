@@ -87,19 +87,19 @@ GET /my-index/_doc/2
 ```
 
 ## Configuration
-No configuration required
+No configuration required.
 
 ## Setup
 Remember to set the `elasticsearchVersion` parameter in your `gradle.properties` file.
 
-In order to install this plugin, you need to create a zip distribution first by running
+In order to install this plugin, you need to create a zip distribution first by running.
 
 ```bash
 gradle clean check
 ```
 This will produce a zip file in `build/distributions`.
 
-After building the zip file, you can install it like this
+After building the zip file, you can install it like this.
 
 ```bash
 bin/elasticsearch-plugin install file:///path/to/ingest-anonymize/build/distribution/ingest-anonymize-x.y.z.zip
@@ -117,4 +117,4 @@ Starting from `elasticsearch 7.x`, developers must use Java 14.
 Thanks to [Alexander Reelsen](https://github.com/spinscale) for his project
 https://github.com/spinscale/cookiecutter-elasticsearch-ingest-processor.
 
-It's very easy building from scratch an `Ingestion Plugin` using the Alexander's project .
+It's very easy building from scratch an `Ingestion Plugin` using the Alexander's project.
