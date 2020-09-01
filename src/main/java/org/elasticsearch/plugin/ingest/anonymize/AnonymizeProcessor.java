@@ -1,5 +1,5 @@
 /*
- * Copyright [2017] [Ettore Caprella]
+ * Copyright [2020] [Ettore Caprella]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,9 +44,9 @@ public class AnonymizeProcessor extends AbstractProcessor {
     private final String method;
     private final boolean ignoreMissing;
 
-    public AnonymizeProcessor(String tag, String field, String targetField, String key, String method,
+    public AnonymizeProcessor(String tag, String description, String field, String targetField, String key, String method,
                               boolean ignoreMissing) throws IOException {
-        super(tag);
+        super(tag, description);
         this.field = field;
         this.targetField = targetField;
         this.key = key;
@@ -126,14 +126,15 @@ public class AnonymizeProcessor extends AbstractProcessor {
     public static final class Factory implements Processor.Factory {
 
         @Override
-        public AnonymizeProcessor create(Map<String, Processor.Factory> factories, String tag, Map<String, Object> config)
+        public AnonymizeProcessor create(Map<String, Processor.Factory> factories, 
+                                         String tag, String description, Map<String, Object> config)
             throws Exception {
             String field = readStringProperty(TYPE, tag, config, "field");
             String targetField = readStringProperty(TYPE, tag, config, "target_field", field);
             String key = readStringProperty(TYPE, tag, config, "key", "supersecrethere");
             String method = readStringProperty(TYPE, tag, config, "method", "HmacSHA1");
             boolean ignoreMissing = readBooleanProperty(TYPE, tag, config, "ignore_missing", true);
-            return new AnonymizeProcessor(tag, field, targetField, key, method, ignoreMissing);
+            return new AnonymizeProcessor(tag, description, field, targetField, key, method, ignoreMissing);
         }
     }
 }

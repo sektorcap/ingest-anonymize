@@ -1,5 +1,5 @@
 /*
- * Copyright [2017] [Ettore Caprella]
+ * Copyright [2020] [Ettore Caprella]
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,11 +36,12 @@ public class AnonymizeProcessorTests extends ESTestCase {
         document.put("source_field", "fancy source field content");
         IngestDocument ingestDocument = RandomDocumentPicks.randomIngestDocument(random(), document);
 
-        AnonymizeProcessor processor = new AnonymizeProcessor(randomAlphaOfLength(10), "source_field",
-                                                                                       "target_field",
-                                                                                       "testkey",
-                                                                                       "HmacSHA1",
-                                                                                       true);
+        AnonymizeProcessor processor = new AnonymizeProcessor(randomAlphaOfLength(10), randomAlphaOfLength(10),
+                                                                "source_field",
+                                                                "target_field",
+                                                                "testkey",
+                                                                "HmacSHA1",
+                                                                true);
 
         Map<String, Object> data = processor.execute(ingestDocument).getSourceAndMetadata();
 
@@ -54,11 +55,12 @@ public class AnonymizeProcessorTests extends ESTestCase {
         document.put("source_field", content);
         IngestDocument ingestDocument = RandomDocumentPicks.randomIngestDocument(random(), document);
 
-        AnonymizeProcessor processor = new AnonymizeProcessor(randomAlphaOfLength(10), "source_field",
-                                                                                       "target_field",
-                                                                                       "testkey",
-                                                                                       "HmacSHA1",
-                                                                                       true);
+        AnonymizeProcessor processor = new AnonymizeProcessor(randomAlphaOfLength(10), randomAlphaOfLength(10),
+                                                                "source_field",
+                                                                "target_field",
+                                                                "testkey",
+                                                                "HmacSHA1",
+                                                                true);
         Map<String, Object> data = processor.execute(ingestDocument).getSourceAndMetadata();
 
         assertThat(data, hasKey("target_field"));
@@ -73,11 +75,12 @@ public class AnonymizeProcessorTests extends ESTestCase {
         document.put("source_field", null);
         IngestDocument ingestDocument = RandomDocumentPicks.randomIngestDocument(random(), document);
 
-        AnonymizeProcessor processor = new AnonymizeProcessor(randomAlphaOfLength(10), "source_field",
-                                                                                       "target_field",
-                                                                                       "testkey",
-                                                                                       "HmacSHA1",
-                                                                                       false);
+        AnonymizeProcessor processor = new AnonymizeProcessor(randomAlphaOfLength(10), randomAlphaOfLength(10),
+                                                                "source_field",
+                                                                "target_field",
+                                                                "testkey",
+                                                                "HmacSHA1",
+                                                                false);
         try {
             processor.execute(ingestDocument);
             assertThat("never here", is("")); // never here
